@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>武道・格闘技専用 レンタル道場</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #c0392b;
+            --text-color: #333;
+            --bg-light: #f9f9f9;
+            --border-color: #ddd;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        /* ① First View */
+        .hero {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .alert-box {
+            display: inline-block;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 10px 20px;
+            font-weight: bold;
+            background: #fff;
+        }
+
+        /* ② Target */
+        .target-box {
+            background: var(--bg-light);
+            border-left: 5px solid var(--primary-color);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .target-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .target-box li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .target-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* ③ Reason */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* ④ Specs & ⑤ Pricing Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            text-align: left;
+        }
+
+        table th {
+            background: var(--bg-light);
+            width: 30%;
+        }
+
+        .price-note {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* ⑥ Step */
+        .step-list {
+            counter-reset: my-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-item {
+            counter-increment: my-counter;
+            position: relative;
+            padding: 20px 0 20px 60px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .step-item::before {
+            content: counter(my-counter);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        /* ⑧ FAQ */
+        .faq-item {
+            margin-bottom: 25px;
+        }
+
+        .faq-q {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .faq-a {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        /* ⑨ Message */
+        .message-box {
+            text-align: center;
+            border: 1px solid var(--primary-color);
+            padding: 40px 20px;
+        }
+
+        /* ⑩ CTA */
+        .cta-box {
+            background: #25d366; /* LINE Color */
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #25d366;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            background: var(--bg-light);
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container" style="padding: 0;">
+            <h1>武道・格闘技に集中するための、<br>無人レンタル道場</h1>
+            <p>空手・柔術・護身術・自主稽古向け</p>
+            <div class="alert-box">
+                ダンス・多目的利用は想定していません
+            </div>
+        </div>
+    </header>
+
+    <section class="container">
+        <h2 class="section-title">こんな方のための道場です</h2>
+        <div class="target-box">
+            <ul>
+                <li>自分の道場を持つ前に、指導・研究ができる場所を探している方</li>
+                <li>少人数で集中して稽古したい武道・格闘技サークル</li>
+                <li>体育館や公共施設が取れず困っている方</li>
+            </ul>
+        </div>
+        <p style="text-align: center; font-size: 0.9rem;">※本気で稽古に打ち込む方のための空間です。「誰でも歓迎」ではありません。</p>
+    </section>
+
+    <section class="container" style="background: var(--bg-light);">
+        <h2 class="section-title">この道場が選ばれる理由</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fa-solid fa-person-fencing"></i>
+                <h3>武道・格闘技特化</h3>
+                <p>打撃・組技を前提とした床材と空間。稽古に不要なものは置いていません。</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-lock"></i>
+                <h3>無人でも徹底管理</h3>
+                <p>スマートロック＋利用終了時の写真提出。厳格な運用により規律を保っています。</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-user-check"></i>
+                <h3>現役武道家が運営</h3>
+                <p>管理者は武道家です。稽古内容や必要な環境を理解した上で運営しています。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">道場スペック・設備</h2>
+        <table>
+            <tr>
+                <th>利用人数目安</th>
+                <td>〇〜〇名</td>
+            </tr>
+            <tr>
+                <th>床</th>
+                <td>〇〇（畳／マット等）</td>
+            </tr>
+            <tr>
+                <th>鏡</th>
+                <td>あり／なし</td>
+            </tr>
+            <tr>
+                <th>設備</th>
+                <td>簡易更衣スペースあり</td>
+            </tr>
+            <tr>
+                <th>音量制限</th>
+                <td>あり（近隣配慮のため）</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">利用料金</h2>
+        <table>
+            <tr>
+                <th>1時間</th>
+                <td>2,500円</td>
+            </tr>
+            <tr>
+                <th>2時間</th>
+                <td>4,000円</td>
+            </tr>
+            <tr>
+                <th>月4回プラン</th>
+                <td>14,000円</td>
+            </tr>
+        </table>
+        <div class="price-note">
+            <p>※武道・格闘技用途限定の料金です</p>
+            <p>※用途が合わない場合はお断りすることがあります</p>
+        </div>
+    </section>
+
+    <section class="container" style="background: var(--bg-light);">
+        <h2 class="section-title">利用の流れ</h2>
+        <div class="step-list">
+            <div class="step-item">
+                <strong>LINEまたはフォームから問い合わせ</strong><br>
+                利用目的・人数・頻度を確認させていただきます。
+            </div>
+            <div class="step-item">
+                <strong>内容確認後、利用案内</strong><br>
+                用途が合致する場合、手続きとスマートロックの使用法をご案内します。
+            </div>
+            <div class="step-item">
+                <strong>当日利用・状況報告</strong><br>
+                入室し稽古開始。終了時は清掃・整頓し、定点写真を提出して完了です。
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">利用ルール</h2>
+        <ul style="max-width: 500px; margin: 0 auto;">
+            <li>原状回復・清掃の徹底</li>
+            <li>利用終了時の室内写真提出（必須）</li>
+            <li>破損・汚損があった場合の即時報告</li>
+            <li>騒音・近隣迷惑行為の禁止</li>
+        </ul>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">よくある質問</h2>
+        <div class="faq-item">
+            <span class="faq-q">Q. 無人ですが本当に大丈夫ですか？</span>
+            <div class="faq-a">A. スマートロックと利用後の写真報告制により、管理者が都度状況を確認しています。また、現役の武道家が管理しており、信頼関係を重視した運用を行っています。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">Q. ダンスやフィットネス利用は可能ですか？</span>
+            <div class="faq-a">A. 申し訳ございませんが、武道・格闘技の稽古・研究を優先するため、それ以外の用途はお断りしております。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">Q. 見学や下見はできますか？</span>
+            <div class="faq-a">A. 初回に限り、日程を調整して対応可能です。まずはお問い合わせください。</div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="message-box">
+            <h2 style="margin-top: 0;">運営者メッセージ</h2>
+            <p>
+                本道場は、空手道場の稽古時間外を、<br>
+                武道・格闘技に真剣に取り組む方へ向けて貸し出しています。<br><br>
+                限られた空間ですが、集中して稽古に打ち込める環境を維持するため、<br>
+                趣旨にご賛同いただける方のみ、ご利用ください。
+            </p>
+        </div>
+    </section>
+
+    <section class="cta-box">
+        <div class="container" style="padding: 0;">
+            <h2>お問い合わせ</h2>
+            <p>初回メッセージで以下の内容を記載してください</p>
+            <p style="background: rgba(0,0,0,0.1); padding: 10px; display: inline-block;">
+                ①利用目的　②人数　③利用頻度
+            </p>
+            <br>
+            <a href="#" class="cta-button">
+                <i class="fa-brands fa-line"></i> LINEで問い合わせる
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 武道・格闘技専用レンタル道場
+    </footer>
+
+</body>
+</html>
