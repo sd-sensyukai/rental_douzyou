@@ -67,6 +67,34 @@
 			color: #fff;
 			text-align: center;
 		}
+		
+		/* ヒーローエリア内の応募ボタン */
+		.hero-cta-button {
+			display: inline-block;
+			background-color: var(--accent-color); /* 戒めを込めた赤、または道場らしい黒 */
+			color: #fff;
+			padding: 15px 40px;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 1.2rem;
+			border-radius: 5px;
+			transition: background 0.3s, transform 0.2s;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+		}
+
+		.hero-cta-button:hover {
+			background-color: #a02e22;
+			transform: translateY(-2px);
+		}
+
+		.hero-note {
+			display: block;
+			margin-top: 15px;
+			font-size: 0.9rem;
+			font-weight: bold;
+			color: #fff;
+			text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+		}
 
 		/* スライド画像自体の設定 */
 		.slide-bg {
@@ -172,23 +200,57 @@
 
         /* ③ Reason */
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 30px;
+		}
 
-        .card {
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            text-align: center;
-        }
+		.card {
+			/* 正円を作るための設定 */
+			width: 300px;
+			height: 300px;
+			border-radius: 50%; /* これで丸くなります */
+			border: 1px solid var(--border-color);
+			background: #fff;
 
-        .card i {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
+			/* 中身の配置設定 */
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center; /* 中央に寄せる */
+			padding: 20px;
+			box-sizing: border-box;
+			text-align: center;
+			transition: transform 0.3s ease;
+		}
+		
+		.card:hover {
+			transform: translateY(-5px); /* 少し浮き上がる演出 */
+			box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+		}
 
+		.card i {
+			font-size: 2.2rem;
+			margin-bottom: 10px;
+			color: var(--primary-color);
+		}
+		
+		.card h3 {
+			font-size: 1.1rem;
+			margin: 0 0 10px 0;
+			padding-bottom: 5px;
+			color: var(--primary-color);
+			border-bottom: 2px solid var(--accent-color);
+			width: fit-content;
+		}
+
+		.card p {
+			margin: 0;
+			font-size: 0.85rem;
+			line-height: 1.6;
+			max-width: 85%; /* 文字が円の端に当たりすぎないように制限 */
+		}
         /* ④ Specs & ⑤ Pricing Table */
         table {
             width: 100%;
@@ -242,6 +304,24 @@
             border-radius: 50%;
             font-weight: bold;
         }
+		
+		/* ⑦ 利用ルールのリスト調整 */
+		.rule-list {
+			max-width: 500px; /* 塊の幅を制限 */
+			margin: 0 auto;   /* 塊自体を中央に寄せる */
+			padding-left: 20px; /* 少しだけ右に寄せてバランス調整 */
+			text-align: left; /* 文の左端は揃える */
+		}
+
+		.rule-list li {
+			margin-bottom: 20px; /* 文の間隔を空ける（以前より広めに設定） */
+			padding-left: 10px;
+			font-weight: 500;
+		}
+
+		.rule-list li::marker {
+			color: var(--accent-color); /* 箇条書きの「点」をアクセントカラーに */
+		}
 
         /* ⑧ FAQ */
         .faq-item {
@@ -303,16 +383,20 @@
 <body>
 
     <header class="hero">
-		<div class="slide-bg"></div>
-		<div class="slide-bg"></div>
-		<div class="slide-bg"></div>
+		<div class="slide-bg" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('adachi_in.jpg');"></div>
+		<div class="slide-bg" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('adachi_in2.jpg');"></div>
+		<div class="slide-bg" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('adachi_out.jpg');"></div>
 
 		<div class="hero-content">
 			<h1>武道・格闘技に集中するための、<br>無人レンタル道場</h1>
 			<p>空手・柔術・護身術・自主稽古向け</p>
-			<div class="alert-box">
-				ダンス・多目的利用は想定していません
-			</div>
+			
+			<a href="#contact" class="hero-cta-button">
+				空き状況をLINEで確認する
+			</a>
+			<span class="hero-note">
+				※ダンス・多目的利用はお断りしております
+			</span>
 		</div>
 	</header>
 
@@ -329,25 +413,25 @@
     </section>
 
     <section class="container" style="background: var(--bg-light);">
-        <h2 class="section-title">この道場が選ばれる理由</h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fa-solid fa-person-fencing"></i>
-                <h3>武道・格闘技特化</h3>
-                <p>打撃・組技を前提とした床材と空間。稽古に不要なものは置いていません。</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-lock"></i>
-                <h3>無人でも徹底管理</h3>
-                <p>スマートロック＋利用終了時の写真提出。厳格な運用により規律を保っています。</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-user-check"></i>
-                <h3>現役武道家が運営</h3>
-                <p>管理者は武道家です。稽古内容や必要な環境を理解した上で運営しています。</p>
-            </div>
-        </div>
-    </section>
+		<h2 class="section-title">この道場が選ばれる理由</h2>
+		<div class="grid">
+			<div class="card">
+				<i class="fa-solid fa-khanda"></i>
+				<h3>武道・格闘技に特化</h3>
+				<p>打撃・組技を前提とした床材と空間。ダンススタジオにはない「武道に最適な踏み込み」が可能です。</p>
+			</div>
+			<div class="card">
+				<i class="fa-solid fa-shield-halved"></i>
+				<h3>無人でも厳格に管理</h3>
+				<p>スマートロック＋終了時の写真報告制。ルールを遵守する方のみが利用するため、規律が保たれています。</p>
+			</div>
+			<div class="card">
+				<i class="fa-solid fa-user-tie"></i>
+				<h3>現役の武道家が運営</h3>
+				<p>管理者は道場主です。稽古に必要な細かな配慮や、利用者のニーズを深く理解して運営しています。</p>
+			</div>
+		</div>
+	</section>
 
     <section class="container">
         <h2 class="section-title">道場スペック・設備</h2>
@@ -416,14 +500,18 @@
     </section>
 
     <section class="container">
-        <h2 class="section-title">利用ルール</h2>
-        <ul style="max-width: 500px; margin: 0 auto;">
-            <li>原状回復・清掃の徹底</li>
-            <li>利用終了時の室内写真提出（必須）</li>
-            <li>破損・汚損があった場合の即時報告</li>
-            <li>騒音・近隣迷惑行為の禁止</li>
-        </ul>
-    </section>
+		<h2 class="section-title">利用ルール</h2>
+		<ul class="rule-list">
+			<li>原状回復・清掃の徹底</li>
+			<li>利用終了時の室内写真提出（必須）</li>
+			<li>破損・汚損があった場合の即時報告</li>
+			<li>騒音・近隣迷惑行為の禁止</li>
+			<li>道場内での食事禁止（水分補給は可）</li>
+		</ul>
+		<p style="text-align: center; margin-top: 30px;">
+			<a href="#" style="color: var(--text-color); text-decoration: underline;">詳細ルールはこちら（PDF）</a>
+		</p>
+	</section>
 
     <section class="container">
         <h2 class="section-title">よくある質問</h2>
