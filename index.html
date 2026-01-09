@@ -139,10 +139,25 @@
 			padding: 20px;
 		}
 		
+		.highlight-text {
+			color: #ff0; /* 文字色を黄色に */
+			/* 文字の輪郭線を赤に（太さ2px） */
+			-webkit-text-stroke: 1.5px #c0392b; 
+			/* 輪郭線が細く感じる場合や古いブラウザ向けの影による補強 */
+			text-shadow: 
+				1px 1px 0 #c0392b,
+			   -1px -1px 0 #c0392b,
+				1px -1px 0 #c0392b,
+			   -1px 1px 0 #c0392b;
+			font-size: 1.1em; /* 少しだけ大きくして強調 */
+			display: inline-block;
+			margin: 5px 0;
+		}
+		
 		.hero-content h1 {
 			font-size: 2.2rem;
-			margin-bottom: 20px;
-			text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* 文字の影 */
+			line-height: 1.4;
+			text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
 		}
 		
 		.hero-content p {
@@ -322,6 +337,13 @@
 		.rule-list li::marker {
 			color: var(--accent-color); /* 箇条書きの「点」をアクセントカラーに */
 		}
+		
+		/* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); overflow-y: auto; }
+        .modal-content { background: #fff; margin: 2% auto; padding: 40px; width: 90%; max-width: 750px; border-radius: 8px; line-height: 1.7; }
+        .close-modal { float: right; font-size: 2.5rem; cursor: pointer; }
+        .rule-detail-box { border: 1px solid #eee; padding: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent-color); }
+        .rule-detail-box h4 { margin-top: 0; color: var(--accent-color); }
 
         /* ⑧ FAQ */
         .faq-item {
@@ -388,8 +410,8 @@
 		<div class="slide-bg" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('adachi_out.jpg');"></div>
 
 		<div class="hero-content">
-			<h1>武道・格闘技に集中するための、<br>無人レンタル道場</h1>
-			<p>空手・柔術・護身術・自主稽古向け</p>
+			<h1>武道・格闘技に集中するための、<br><span class="highlight-text">格闘技レンタルスペース足立</span> － 鹿浜スタジオ</h1>
+			<p>キック・空手・柔術など格闘技全般向け</p>
 			
 			<a href="#contact" class="hero-cta-button">
 				空き状況をLINEで確認する
@@ -438,19 +460,20 @@
         <table>
             <tr>
                 <th>利用人数目安</th>
-                <td>〇〜〇名</td>
+                <td>1〜10名</td>
             </tr>
             <tr>
                 <th>床</th>
-                <td>〇〇（畳／マット等）</td>
+                <td>50センチジョイントマット</td>
             </tr>
             <tr>
                 <th>鏡</th>
-                <td>あり／なし</td>
+                <td>あり</td>
             </tr>
             <tr>
                 <th>設備</th>
-                <td>簡易更衣スペースあり</td>
+                <td>マルチマシン（60キロ）　可変式ダンベル（40キロ）　バトルロープ　TRXベルト　部位鍛錬砂袋　ボクシンググローブ　キックミット
+				　ビッグミット　ハンドミット　ターゲットミット　ヘッドギア　ボディープロテクター　サンドバッグ×2</td>
             </tr>
             <tr>
                 <th>音量制限</th>
@@ -509,9 +532,72 @@
 			<li>道場内での食事禁止（水分補給は可）</li>
 		</ul>
 		<p style="text-align: center; margin-top: 30px;">
-			<a href="#" style="color: var(--text-color); text-decoration: underline;">詳細ルールはこちら（PDF）</a>
-		</p>
+            <a href="javascript:void(0)" onclick="openModal()" style="color: var(--accent-color); font-weight: bold; text-decoration: underline;">
+                【重要】詳細な利用ルール・確定版規約を確認する
+            </a>
+        </p>
 	</section>
+	
+	<div id="ruleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="text-align:left;">レンタル道場 利用ルール（確定版）</h2>
+            
+            <div class="rule-detail-box">
+				<h4>1. 利用できる方・用途</h4>
+				<p>本道場は、武道・格闘技用途に限定して貸し出しています。</p>
+				<p class="rule-sub">【利用可】空手・柔術・護身術・打撃／組技の自主稽古、少人数での研究・指導</p>
+				<p class="rule-sub">【利用不可】ダンス、ヨガ、フィットネス、パーティー、撮影、イベント、大音量での音楽</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>2. 利用人数・時間</h4>
+				<p>利用人数は <strong>最大10名まで</strong>。予約時間内での入退室を厳守してください。早入り・延長利用は禁止です。</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>3. 入退室・鍵の管理</h4>
+				<p>入退室はスマートロック式キーボックスを使用します。解錠情報は利用者本人のみが使用可能。第三者への共有は禁止です。</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>4. 原状回復・清掃</h4>
+				<p>利用後は必ず原状回復を行ってください。ゴミは必ずお持ち帰りください。備品は元の位置へ戻してください。</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>5. 利用終了時の確認（最重要）</h4>
+				<p>利用終了時、指定された角度から道場内の写真を撮影し、管理者へ送信することで完了となります。写真がない場合、次回以降お断りします。</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>6. 備品・設備の扱い</h4>
+				<p>破損・汚損が発生した場合は、必ず当日中に報告してください。故意・重大な過失は実費請求する場合があります。</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>7. 騒音・近隣配慮</h4>
+				<p>大声・過度な打撃音にはご注意ください。苦情が入った場合、即時利用中止となる場合があります。</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>8. 禁止事項</h4>
+				<p>無断での第三者同伴、酒気帯び、喫煙、飲酒、危険行為、他者への迷惑行為。</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>9. 違反時の対応</h4>
+				<p>利用目的の虚偽申告、ルール違反、写真提出がない場合は、今後の利用を一切お断りします。</p>
+			</div>
+
+			<div class="rule-detail-box">
+				<h4>10. 免責事項</h4>
+				<p>利用中のケガ・事故、貴重品の紛失について、当道場は一切の責任を負いかねます。</p>
+			</div>
+            <p>※その他、騒音配慮・ゴミの持ち帰り・酒気帯び利用禁止などを遵守してください。</p>
+            <button onclick="closeModal()" style="width:100%; padding:15px; background:var(--primary-color); color:#fff; border:none; cursor:pointer; font-weight:bold;">ルールを理解しました</button>
+        </div>
+    </div>
 
     <section class="container">
         <h2 class="section-title">よくある質問</h2>
@@ -558,6 +644,26 @@
     <footer>
         &copy; 2024 武道・格闘技専用レンタル道場
     </footer>
+	
+	<script>
+        function openModal() {
+            document.getElementById("ruleModal").style.display = "block";
+            document.body.style.overflow = "hidden"; // 背景スクロール停止
+        }
+
+        function closeModal() {
+            document.getElementById("ruleModal").style.display = "none";
+            document.body.style.overflow = "auto"; // 背景スクロール再開
+        }
+
+        // モーダルの外側をクリックしても閉じる
+        window.onclick = function(event) {
+            var modal = document.getElementById("ruleModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 
 </body>
 </html>
