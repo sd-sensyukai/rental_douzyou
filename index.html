@@ -400,6 +400,83 @@
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.6rem; }
         }
+		
+		/* LINEボタンの装飾 */
+		.cta-link {
+			display: inline-block;
+			background: #fff;
+			color: #06C755; /* LINEのブランドカラー */
+			padding: 18px 45px;
+			text-decoration: none;
+			font-weight: bold;
+			border-radius: 50px; /* 丸みをつけて親しみやすく */
+			margin-top: 20px;
+			font-size: 1.3rem;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+			transition: transform 0.3s ease;
+		}
+
+		.cta-link:hover {
+			transform: scale(1.05);
+		}
+
+		.fa-line {
+			margin-right: 8px;
+			font-size: 1.5rem;
+			vertical-align: middle;
+		}
+		
+		/* ⑪ Access セクションの完全修正 */
+		.access-outer {
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.access-container {
+			width: 100%;
+			/* max-widthを消去、または800pxに合わせる */
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.map-wrapper {
+			width: 100%; /* 740pxいっぱいに引き伸ばす */
+			margin-bottom: 25px;
+		}
+
+		.access-map {
+			width: 100% !important; /* 親要素の幅に合わせて引き伸ばす */
+			height: 450px; /* 少し高さを出して見やすく */
+			border: 0;
+			border-radius: 8px;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			display: block;
+		}
+
+		.access-info {
+			background: var(--bg-light);
+			padding: 30px;
+			border-radius: 8px;
+			width: 100%; /* マップと同じ740px幅に */
+			box-sizing: border-box;
+			text-align: left;
+		}
+
+		.access-info p {
+			margin: 15px 0;
+			display: flex;
+			align-items: flex-start;
+			gap: 15px;
+			font-size: 1rem;
+			line-height: 1.6;
+		}
+
+		.access-info i {
+			color: var(--accent-color);
+			margin-top: 5px;
+			font-size: 1.2rem;
+		}
     </style>
 </head>
 <body>
@@ -413,8 +490,8 @@
 			<h1>武道・格闘技に集中するための、<br><span class="highlight-text">格闘技レンタルスペース足立</span> － 鹿浜スタジオ</h1>
 			<p>キック・空手・柔術など格闘技全般向け</p>
 			
-			<a href="#contact" class="hero-cta-button">
-				空き状況をLINEで確認する
+			<a href="https://line.me/R/ti/p/@228xbnzx" class="hero-cta-button" target="_blank">
+				<i class="fa-brands fa-line"></i> 空き状況をLINEで確認する
 			</a>
 			<span class="hero-note">
 				※ダンス・多目的利用はお断りしております
@@ -626,6 +703,33 @@
             </p>
         </div>
     </section>
+	
+	<section class="container">
+    <h2 class="section-title">アクセス</h2>
+    
+    <div class="access-outer">
+        <div class="access-container">
+            <div class="map-wrapper">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.5420725755635!2d139.75921887559676!3d35.78662347255347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601893a348cb952f%3A0x6091da7211dc79ff!2z5bCP5a6u56ys77yR44OP44Kk44OE!5e0!3m2!1sja!2sjp!4v1768047426490!5m2!1sja!2sjp" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+
+            <div class="access-info">
+                <p>
+                    <i class="fa-solid fa-location-dot"></i> 
+                    <span><strong>住所：</strong><br>東京都足立区鹿浜〇丁目〇-〇</span>
+                </p>
+                <p>
+                    <i class="fa-solid fa-train"></i> 
+                    <span><strong>最寄り駅：</strong><br>日暮里・舎人ライナー「西新井大師西駅」より徒歩〇分</span>
+                </p>
+                <p>
+                    <i class="fa-solid fa-car"></i> 
+                    <span><strong>駐車場：</strong><br>近隣にコインパーキングあり（徒歩1分以内）</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section class="cta-box">
         <div class="container" style="padding: 0;">
@@ -635,9 +739,9 @@
                 ①利用目的　②人数　③利用頻度
             </p>
             <br>
-            <a href="#" class="cta-button">
-                <i class="fa-brands fa-line"></i> LINEで問い合わせる
-            </a>
+            <a href="https://line.me/R/ti/p/@228xbnzx" class="cta-link" target="_blank">
+				<i class="fa-brands fa-line"></i> LINEで問い合わせる
+			</a>
         </div>
     </section>
 
